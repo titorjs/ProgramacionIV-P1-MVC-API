@@ -14,5 +14,8 @@ namespace ApiColegioPagos.Models
         [Range(0, 1000)]
         [RegularExpression(@"^\d+(\.\d{2})?$")]
         public float Pen_valor { get; set; }
+
+        public virtual ICollection<Estudiante> Estudites { get; set;}
+        public virtual ICollection<Pago> Pagos { get; set;}
     }
 }

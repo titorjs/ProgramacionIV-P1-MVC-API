@@ -11,10 +11,10 @@ namespace ApiColegioPagos.Models
         [Required, Range(1,10)]
         public int Pag_cuota { get; set;}
 
-        [Required, ForeignKey("Est_id")]
-        public Estudiante Est_id {  get; set; }
+        [ForeignKey("Est_id")]
+        public Estudiante Estudiante {  get; set; }
 
-        [Required, ForeignKey("Pen_id")]
-        public Pension Pen_id { get; set; }
+        [ForeignKey("Pen_id")]
+        public Pension Pension { get; set; }
     }
 }

@@ -21,8 +21,9 @@ namespace ApiColegioPagos.Models
         [Required]
         public bool Est_activo { get; set; }
 
-        [Required, ForeignKey("Pen_id")]
-        public Pension Pen_id { get; set; }
+        [ForeignKey("Pen_id")]
+        public Pension Pension { get; set; }
 
+        public virtual ICollection<Pago> Pagos { get; set; }
     }
 }
