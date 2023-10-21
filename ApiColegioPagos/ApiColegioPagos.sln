@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiColegioPagos", "ApiColegioPagos.csproj", "{1653AFA2-BC19-436A-BF8C-5D7B7CD11724}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebColegioPagos", "..\WebColegioPagos\WebColegioPagos.csproj", "{D1D19B93-327E-4151-BB11-A668209ECF02}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1653AFA2-BC19-436A-BF8C-5D7B7CD11724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1653AFA2-BC19-436A-BF8C-5D7B7CD11724}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1653AFA2-BC19-436A-BF8C-5D7B7CD11724}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1653AFA2-BC19-436A-BF8C-5D7B7CD11724}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1D19B93-327E-4151-BB11-A668209ECF02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1D19B93-327E-4151-BB11-A668209ECF02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1D19B93-327E-4151-BB11-A668209ECF02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1D19B93-327E-4151-BB11-A668209ECF02}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9083EC8-AD9F-4F63-8366-65B0F863831E}
+	EndGlobalSection
+EndGlobal
