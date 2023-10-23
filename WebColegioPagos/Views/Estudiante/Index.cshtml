@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "Lista de Estudiantes";
+}
+<h1>@ViewData["Title"]</h1>
+<button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Create", "Estudiante")'">Agregar Estudiante</button>
+<h3>Buscar estudiante por cédula</h3>
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+    </div>
+</nav>
+<div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "Estudiante")'">Visualizar Estudiante</button>
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "Estudiante")'">Modificar datos Estudiante</button>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id Estudiante</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Cedula</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Activo</th>
+            <th scope="col">Pension</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+<p>En esta pagina se muestran los estudiantes</p>
