@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Laptop\\Source\\Repos\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\WebColegioPagos.csproj": {}
+    "C:\\Users\\Laptop\\source\\repos\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\WebColegioPagos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Laptop\\Source\\Repos\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\WebColegioPagos.csproj": {
+    "C:\\Users\\Laptop\\source\\repos\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\WebColegioPagos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Laptop\\Source\\Repos\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\WebColegioPagos.csproj",
+        "projectUniqueName": "C:\\Users\\Laptop\\source\\repos\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\WebColegioPagos.csproj",
         "projectName": "WebColegioPagos",
-        "projectPath": "C:\\Users\\Laptop\\Source\\Repos\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\WebColegioPagos.csproj",
+        "projectPath": "C:\\Users\\Laptop\\source\\repos\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\WebColegioPagos.csproj",
         "packagesPath": "C:\\Users\\Laptop\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Laptop\\Source\\Repos\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\obj\\",
         "projectStyle": "PackageReference",
