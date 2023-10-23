@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiColegioPagos", "ApiColegioPagos.csproj", "{1653AFA2-BC19-436A-BF8C-5D7B7CD11724}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D1D19B93-327E-4151-BB11-A668209ECF02} = {D1D19B93-327E-4151-BB11-A668209ECF02}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebColegioPagos", "..\WebColegioPagos\WebColegioPagos.csproj", "{D1D19B93-327E-4151-BB11-A668209ECF02}"
 EndProject
