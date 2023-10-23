@@ -46,7 +46,7 @@ using (var scope = app.Services.CreateScope())
         global = new Global
         {
             Glo_nombre = "Cuota",
-            Glo_valor = 1
+            Glo_valor = 0
         };
         await dbContext.Globals.AddAsync(global);
         await dbContext.SaveChangesAsync();
