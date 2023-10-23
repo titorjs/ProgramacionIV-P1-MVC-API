@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HlPYxq8O3GqIXYrOSoHNGwy/pgx/xqN5Fe7p1d34lIUdySCK+bZf4gW/EtyedgVDL08tIPi+TrH0drM9pVw4gg==",
+  "dgSpecHash": "ZhMFrjBuw0EqpqhVis0rO9yr5f0J7JFmocFH3U7GfAH9VSzSbCYpLQ/i8Lt3TXejBBaVDK+LpUMEpYATl7pKPQ==",
   "success": true,
-  "projectFilePath": "C:\\T\\Proyectos Programación\\ColegioPagos\\WebColegioPagos\\WebColegioPagos.csproj",
+  "projectFilePath": "C:\\T\\Proyectos Programación\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\WebColegioPagos.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Arévalo\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Arévalo\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

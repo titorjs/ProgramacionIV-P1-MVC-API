@@ -1,14 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ApiColegioPagos.Models
+namespace ApiColegioPagos.Views
 {
-    public class Estudiante
+    public class RegistroEstudiante
     {
-        [Key]
-        public int Est_id { get; set; }
-
-        [Required, MaxLength(10)]
+        [Required]
         public string Est_cedula { get; set; }
 
         [Required, MaxLength(100)]
@@ -18,10 +14,6 @@ namespace ApiColegioPagos.Models
         public string Est_direccion { get; set; }
 
         [Required]
-        public bool Est_activo { get; set; }
-
-        [Required]
         public int Pension { get; set; }
-
     }
 }

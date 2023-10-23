@@ -32,8 +32,10 @@ namespace ApiColegioPagos.Migrations
                     b.Property<bool>("Est_activo")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Est_cedula")
-                        .HasColumnType("int");
+                    b.Property<string>("Est_cedula")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Est_direccion")
                         .IsRequired()
@@ -45,12 +47,10 @@ namespace ApiColegioPagos.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("Pen_id")
+                    b.Property<int>("Pension")
                         .HasColumnType("int");
 
                     b.HasKey("Est_id");
-
-                    b.HasIndex("Pen_id");
 
                     b.ToTable("Estudiantes");
                 });
@@ -84,20 +84,16 @@ namespace ApiColegioPagos.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Pag_id"));
 
-                    b.Property<int>("Est_id")
+                    b.Property<int>("Estudiante")
                         .HasColumnType("int");
 
                     b.Property<int>("Pag_cuota")
                         .HasColumnType("int");
 
-                    b.Property<int>("Pen_id")
+                    b.Property<int>("Pension")
                         .HasColumnType("int");
 
                     b.HasKey("Pag_id");
-
-                    b.HasIndex("Est_id");
-
-                    b.HasIndex("Pen_id");
 
                     b.ToTable("Pagos");
                 });
@@ -121,48 +117,6 @@ namespace ApiColegioPagos.Migrations
                     b.HasKey("Pen_id");
 
                     b.ToTable("Pensiones");
-                });
-
-            modelBuilder.Entity("ApiColegioPagos.Models.Estudiante", b =>
-                {
-                    b.HasOne("ApiColegioPagos.Models.Pension", "Pension")
-                        .WithMany("Estudites")
-                        .HasForeignKey("Pen_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pension");
-                });
-
-            modelBuilder.Entity("ApiColegioPagos.Models.Pago", b =>
-                {
-                    b.HasOne("ApiColegioPagos.Models.Estudiante", "Estudiante")
-                        .WithMany("Pagos")
-                        .HasForeignKey("Est_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ApiColegioPagos.Models.Pension", "Pension")
-                        .WithMany("Pagos")
-                        .HasForeignKey("Pen_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Estudiante");
-
-                    b.Navigation("Pension");
-                });
-
-            modelBuilder.Entity("ApiColegioPagos.Models.Estudiante", b =>
-                {
-                    b.Navigation("Pagos");
-                });
-
-            modelBuilder.Entity("ApiColegioPagos.Models.Pension", b =>
-                {
-                    b.Navigation("Estudites");
-
-                    b.Navigation("Pagos");
                 });
 #pragma warning restore 612, 618
         }

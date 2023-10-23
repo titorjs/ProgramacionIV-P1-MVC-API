@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\T\\Proyectos Programación\\ColegioPagos\\WebColegioPagos\\WebColegioPagos.csproj": {}
+    "C:\\T\\Proyectos Programación\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\WebColegioPagos.csproj": {}
   },
   "projects": {
-    "C:\\T\\Proyectos Programación\\ColegioPagos\\WebColegioPagos\\WebColegioPagos.csproj": {
+    "C:\\T\\Proyectos Programación\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\WebColegioPagos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\T\\Proyectos Programación\\ColegioPagos\\WebColegioPagos\\WebColegioPagos.csproj",
+        "projectUniqueName": "C:\\T\\Proyectos Programación\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\WebColegioPagos.csproj",
         "projectName": "WebColegioPagos",
-        "projectPath": "C:\\T\\Proyectos Programación\\ColegioPagos\\WebColegioPagos\\WebColegioPagos.csproj",
+        "projectPath": "C:\\T\\Proyectos Programación\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\WebColegioPagos.csproj",
         "packagesPath": "C:\\Users\\Arévalo\\.nuget\\packages\\",
-        "outputPath": "C:\\T\\Proyectos Programación\\ColegioPagos\\WebColegioPagos\\obj\\",
+        "outputPath": "C:\\T\\Proyectos Programación\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Arévalo\\AppData\\Roaming\\NuGet\\NuGet.Config",

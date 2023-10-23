@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\T\\Proyectos Programación\\ColegioPagos\\ApiColegioPagos\\ApiColegioPagos.csproj": {}
+    "C:\\T\\Proyectos Programación\\ProgramacionIV-P1-MVC-API\\ApiColegioPagos\\ApiColegioPagos.csproj": {}
   },
   "projects": {
-    "C:\\T\\Proyectos Programación\\ColegioPagos\\ApiColegioPagos\\ApiColegioPagos.csproj": {
+    "C:\\T\\Proyectos Programación\\ProgramacionIV-P1-MVC-API\\ApiColegioPagos\\ApiColegioPagos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\T\\Proyectos Programación\\ColegioPagos\\ApiColegioPagos\\ApiColegioPagos.csproj",
+        "projectUniqueName": "C:\\T\\Proyectos Programación\\ProgramacionIV-P1-MVC-API\\ApiColegioPagos\\ApiColegioPagos.csproj",
         "projectName": "ApiColegioPagos",
-        "projectPath": "C:\\T\\Proyectos Programación\\ColegioPagos\\ApiColegioPagos\\ApiColegioPagos.csproj",
+        "projectPath": "C:\\T\\Proyectos Programación\\ProgramacionIV-P1-MVC-API\\ApiColegioPagos\\ApiColegioPagos.csproj",
         "packagesPath": "C:\\Users\\Arévalo\\.nuget\\packages\\",
-        "outputPath": "C:\\T\\Proyectos Programación\\ColegioPagos\\ApiColegioPagos\\obj\\",
+        "outputPath": "C:\\T\\Proyectos Programación\\ProgramacionIV-P1-MVC-API\\ApiColegioPagos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Arévalo\\AppData\\Roaming\\NuGet\\NuGet.Config",
