@@ -103,15 +103,15 @@ namespace ApiColegioPagos.Controllers
             return Ok(estudiante);
         }
 
-        [HttpPut("cedula/")]
-        public async Task<IActionResult> UpdateEstudianteCedula([FromBody] Estudiante est)
+        [HttpPut("cedula/{cedula}")]
+        public async Task<IActionResult> UpdateEstudianteCedula(string cedula, [FromBody] Estudiante est)
         {
             if (est == null || est.Est_cedula == null || est.Est_nombre == null || est.Est_direccion == null)
             {
                 return BadRequest("Datos incompletos");
             }
 
-            Estudiante estudiante = await _context.Estudiantes.FirstOrDefaultAsync(x => x.Est_cedula == est.Est_cedula);
+            Estudiante estudiante = await _context.Estudiantes.FirstOrDefaultAsync(x => x.Est_cedula == cedula);
 
             if (estudiante == null)
             {
@@ -129,15 +129,15 @@ namespace ApiColegioPagos.Controllers
             return Ok(estudiante);
         }
 
-        [HttpPut("id/")]
-        public async Task<IActionResult> UpdateEstudianteId([FromBody] Estudiante est)
+        [HttpPut("id/{id}")]
+        public async Task<IActionResult> UpdateEstudianteId(int id, [FromBody] Estudiante est)
         {
             if (est == null || est.Est_id == null || est.Est_nombre == null || est.Est_direccion == null)
             {
                 return BadRequest("Datos incompletos");
             }
 
-            Estudiante estudiante = await _context.Estudiantes.FirstOrDefaultAsync(x => x.Est_id == est.Est_id);
+            Estudiante estudiante = await _context.Estudiantes.FirstOrDefaultAsync(x => x.Est_id == id);
 
             if (estudiante == null)
             {
@@ -160,5 +160,64 @@ namespace ApiColegioPagos.Controllers
             cree un pago a la cuota actual
          */
 
-    }
+        [HttpPatch("desactivar/{id}")]
+		public async Task<IActionResult> desactivar(int id)
+        {
+            Estudiante est = await _context.Estudiantes.FirstOrDefaultAsync(x => x.Est_id == id);
+            if(est == null)
+            {
+                return BadRequest("No existe el estudiante");
+            }
+
+            if (!est.Est_activo)
+            {
+                return BadRequest("El estudiante ya se encuentra deshabilitado");
+            }
+
+            est.Est_activo = false;
+            _context.Estudiantes.Update(est);
+            await _context.SaveChangesAsync();
+
+            return Ok(est);
+        }
+
+        /* bool paga hace referencia a si pagará la cuota actual o nó */
+		[HttpPatch("activar/{id}")]
+		public async Task<IActionResult> activar(int id, bool paga)
+		{
+			Estudiante est = await _context.Estudiantes.FirstOrDefaultAsync(x => x.Est_id == id);
+			if (est == null)
+			{
+				return BadRequest("No existe el estudiante");
+			}
+
+			if (est.Est_activo)
+			{
+				return BadRequest("El estudiante ya se encuentra habilitado");
+			}
+
+			est.Est_activo = true;
+			_context.Estudiantes.Update(est);
+
+			/* Lógica de reingreso, actualizar cuotas*/
+
+			Pago utlimoPago = (await _context.Pagos.ToListAsync()).FindAll(x => x.Estudiante == id).OrderByDescending(x => x.Pag_cuota).First();
+
+
+			if (paga)
+            {
+
+            } else
+            {
+
+            }
+
+
+			await _context.SaveChangesAsync();
+
+			return Ok(est);
+		}
+
+
+	}
 }

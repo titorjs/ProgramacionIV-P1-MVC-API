@@ -47,7 +47,7 @@ namespace ApiColegioPagos.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("Pension")
+                    b.Property<int>("Pen_id")
                         .HasColumnType("int");
 
                     b.HasKey("Est_id");
@@ -90,7 +90,7 @@ namespace ApiColegioPagos.Migrations
                     b.Property<int>("Pag_cuota")
                         .HasColumnType("int");
 
-                    b.Property<int>("Pension")
+                    b.Property<int>("Pen_id")
                         .HasColumnType("int");
 
                     b.HasKey("Pag_id");
@@ -98,7 +98,7 @@ namespace ApiColegioPagos.Migrations
                     b.ToTable("Pagos");
                 });
 
-            modelBuilder.Entity("ApiColegioPagos.Models.Pension", b =>
+            modelBuilder.Entity("ApiColegioPagos.Models.Pen_id", b =>
                 {
                     b.Property<int>("Pen_id")
                         .ValueGeneratedOnAdd()
