@@ -14,8 +14,6 @@
     </div>
 </nav>
 <div class="btn-group" role="group" aria-label="Basic example">
-    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "Estudiante")'">Visualizar Estudiante</button>
-    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "Estudiante")'">Modificar datos Estudiante</button>
 </div>
 <table class="table">
     <thead>
@@ -26,10 +24,23 @@
             <th scope="col">Direccion</th>
             <th scope="col">Activo</th>
             <th scope="col">Pension</th>
+            <th scope="col">Accion</th>
+
         </tr>
     </thead>
     <tbody>
-        
+        <tr>
+            <td>1</td>
+            <td>Julian</td>
+            <td>1710044</td>
+            <td>pampa</td>
+            <td>Activo</td>
+            <td>Beca Estudiantil</td>
+            <td>
+                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Details", "Estudiante")'"><i class="bi bi-eye-fill"></i></button>
+                <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Estudiante")'"><i class="bi bi-pencil-fill"></i></button>
+            </td>
+        </tr>
     </tbody>
 </table>
 

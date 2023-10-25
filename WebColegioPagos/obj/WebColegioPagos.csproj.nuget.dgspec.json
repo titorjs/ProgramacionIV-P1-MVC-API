@@ -11,7 +11,7 @@
         "projectName": "WebColegioPagos",
         "projectPath": "C:\\Users\\Laptop\\source\\repos\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\WebColegioPagos.csproj",
         "packagesPath": "C:\\Users\\Laptop\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Laptop\\Source\\Repos\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\obj\\",
+        "outputPath": "C:\\Users\\Laptop\\source\\repos\\ProgramacionIV-P1-MVC-API\\WebColegioPagos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -85,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

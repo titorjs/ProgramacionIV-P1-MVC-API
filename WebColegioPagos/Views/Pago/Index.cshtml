@@ -11,23 +11,38 @@
         </form>
     </div>
 </nav>
-<div class="btn-group" role="group" aria-label="Basic example">
-    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Details", "Estudiante")'">Visualizar Estudiante</button>
-    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "Estudiante")'">Modificar datos Estudiante</button>
-</div>
+<h3>Buscar pago por ID de pago</h3>
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+    </div>
+</nav>
+
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Id Estudiante</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Cedula</th>
-            <th scope="col">Direccion</th>
-            <th scope="col">Activo</th>
-            <th scope="col">Pension</th>
+            <th scope="col">Id Pago</th>
+            <th scope="col">Cuota</th>
+            <th scope="col">Estudiante</th>
+            <th scope="col">Pension</th>   
+            <th scope="col">Accion</th>
         </tr>
     </thead>
     <tbody>
+        <tr>          
+            <td>1</td>
+            <td>3</td>
+            <td>Julian</td>
+            <td>Beca Estudiantil</td>
+            <td>
+                <button type="button" class="btn btn-success">Pagar</button>
+            </td>
+        </tr>
     </tbody>
 </table>
 
-<p>En esta pagina se muestran los estudiantes</p>
+
+<p>En esta pagina se muestran los pagos</p>
