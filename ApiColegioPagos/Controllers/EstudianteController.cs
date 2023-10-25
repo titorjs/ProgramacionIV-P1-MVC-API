@@ -201,7 +201,8 @@ namespace ApiColegioPagos.Controllers
 
 			/* Lógica de reingreso, actualizar cuotas*/
 
-			Pago utlimoPago = (await _context.Pagos.ToListAsync()).FindAll(x => x.Estudiante == id).OrderByDescending(x => x.Pag_cuota).First();
+			Pago utlimoPago = (await _context.Pagos.ToListAsync())
+                .FindAll(x => x.Estudiante == id).OrderByDescending(x => x.Pag_cuota).First();
 
 
 			if (paga)
