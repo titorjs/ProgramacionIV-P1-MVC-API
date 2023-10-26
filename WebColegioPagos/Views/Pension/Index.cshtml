@@ -1,8 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Lista de Pensiones";
 }
-<h1>@ViewData["Title"]</h1>
-<h4>Buscar pensión por ID</h4>
+<h1 class="text-light">@ViewData["Title"]</h1>
+<h4 class="text-light">Buscar pensión por ID</h4>
 <nav class="navbar bg-body-tertiary bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
         <form class="d-flex" role="search">
@@ -27,11 +27,11 @@
             <td>Beca Honoraria</td>
             <td>115.23</td>
             <td>
-                <button type="button" class="btn btn-outline-success">Que pongo?</button>
+                <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Edit", "Pension")'"><i class="bi bi-pencil-fill"></i></button>
             </td>
         </tr>
     </tbody>
 </table>
 
 
-<p>En esta pagina se muestran las pensiones</p>
+

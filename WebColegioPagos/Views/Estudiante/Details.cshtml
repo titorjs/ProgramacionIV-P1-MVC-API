@@ -2,31 +2,31 @@
 @{
     ViewData["Title"] = "Detalles del Estudiante";
 }
-<h1>@ViewData["Title"]</h1>
+<h1 class="text-light">@ViewData["Title"]</h1>
 <form method="post">
     <div class="mb-3">
-        <label>Nombre</label>
+        <label class="text-light">Nombre</label>
         <input  class="form-control" disabled>
     </div>
     <div class="mb-3">
-        <label>Cedula</label>
+        <label class="text-light">Cedula</label>
         <input class="form-control" disabled>
     </div>
     <div class="mb-3">
-        <label>Direccion</label>
+        <label class="text-light">Direccion</label>
         <input class="form-control" disabled>
     </div>
     <div class="mb-3">
-        <label>Estado actividad</label>
+        <label class="text-light">Estado actividad</label>
         <input class="form-control" disabled>
     </div>
     <div class="mb-3">
-        <label>Pension</label>
+        <label class="text-light">Pension</label>
         <input class="form-control" disabled>
     </div>
     <div class="row col 6">
         <div class="col-6 col-md-6">
-            <a asp-action="Index" class="btn btn-outline-primary">Regresar</a>
+            <a asp-action="Index" class="btn btn-primary">Regresar</a>
         </div>
     </div>
 </form>

@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Pagos Pendientes";
+}
+<h1 class="text-light">@ViewData["Title"]</h1>
+<div class="container">
+    <div>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Cuota Del sistema
+                <span class="badge bg-primary rounded-pill">5</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Cuota del estudiante
+                <span class="badge bg-primary rounded-pill">2</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Monto a pagar
+                <span class="badge bg-primary rounded-pill">231.56</span>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <div class="card" style="width: 18rem;">
+            <img src="/img/Tarjetas-2.jpg" class="card-img-top" alt="Tarjetas de crédito">
+            <div class="card-body">
+                <h5 class="card-title">Valor a pagar</h5>
+                <label>Ingrese el monto a pagar</label>
+                <input type="number" step="0.01" min="0" />
+                <a href="#" class="btn btn-success">Pagar</a>
+                <a asp-action="Index" class="btn btn-primary">Regresar</a>
+            </div>
+        </div>
+    </div>
+</div>
+

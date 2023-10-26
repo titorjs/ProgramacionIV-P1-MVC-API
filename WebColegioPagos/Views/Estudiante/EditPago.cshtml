@@ -1,15 +1,19 @@
 ﻿@{
     ViewData["Title"] = "Estado Activo del estudiante";
 }
-<h1>@ViewData["Title"]</h1>
+<h1 class="text-light">@ViewData["Title"]</h1>
 <form method="post">
     <div class="mb-3">
-        <label>Nombre</label>
+        <label class="text-light">Nombre</label>
+        <input class="form-control" disabled>
+    </div>
+    <div class="mb-3">
+        <label class="text-light">Estado actual</label>
         <input class="form-control" disabled>
     </div>
     <div class="mb-3">
         <div class="form-group">
-        <label for="exampleSelect1" class="form-label mt-4">Estado Estudiante</label>
+            <label for="exampleSelect1" class="form-label mt-4 text-light" >Nuevo Estado </label>
             <select class="form-select" id="exampleSelect1">
                 <option>Activo</option>
                 <option>Inactivo</option>                
@@ -18,10 +22,10 @@
     </div>
     <div class="row col 6">
         <div class="col-6 col-md-6">
-            <button class="btn btn-outline-success">Guardar</button>
+            <button class="btn btn-success">Guardar</button>
         </div>
         <div class="col-6 col-md-6">
-            <a asp-action="Index" class="btn btn-outline-primary">Regresar</a>
+            <a asp-action="Index" class="btn btn-primary">Regresar</a>
         </div>
     </div>
 </form>

@@ -1,0 +1,8 @@
+﻿.card-container {
+    display: flex; /* Utiliza un contenedor flexible para alinear los elementos en línea */
+}
+
+.card {
+    flex: 1; /* Hace que las tarjetas ocupen el mismo espacio disponible horizontalmente */
+    margin-right: 10px; /* Ajusta el margen entre las tarjetas según tus preferencias */
+}

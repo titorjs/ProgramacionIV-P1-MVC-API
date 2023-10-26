@@ -1,8 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Lista de Pagos";
 }
-<h1>@ViewData["Title"]</h1>
-<h4>Buscar pago por cédula de estudiante</h4>
+<h1 class="text-light">@ViewData["Title"]</h1>
+<h4 class="text-light">Buscar pago por cédula de estudiante</h4>
 <nav class="navbar bg-body-tertiary bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
         <form class="d-flex" role="search">
@@ -11,7 +11,7 @@
         </form>
     </div>
 </nav>
-<h4>Buscar pago por ID de pago</h4>
+<h4 class="text-light">Buscar pago por ID de pago</h4>
 <nav class="navbar bg-body-tertiary bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
         <form class="d-flex" role="search">
@@ -38,7 +38,7 @@
             <td>Julian</td>
             <td>Beca Estudiantil</td>
             <td>
-                <button type="button" class="btn btn-outline-success">Pagar</button>
+                <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Pago")'">Pagar</button>
             </td>
         </tr>
     </tbody>

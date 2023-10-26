@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Cuotas del Año Lectivo";
+}
+<head>
+    <link rel="stylesheet" href="~/css/General.css" />
+</head>
+<div class="text-center text-light">
+    <h1 class="display-4 text-light">@ViewData["Title"]</h1>
+    <img src="/img/logo.png" class="img-fluid" alt="Logo empresa">
+</div>
+<div class="card-container">
+        <div class="card text-white bg-primary mb-3">
+                <div class="card-header">IMPORTANTE!!!</div>
+                <div class="card-body">
+                    <h4 class="card-title">Cambio de cuotas</h4>
+                    <p class="card-text">Se debe recordar que el cambio de una cuota se debe realizar el 
+                        5 de cada mes para todos los estudiante</p>
+                </div>
+ 
+    </div>
+</div>
+<div class="card-container">
+    <div class="card bg-secondary mb-3">
+        <div class="card-body">
+            <h5 class="card-title text-dark">Cuotas</h5>
+            <label class="text-dark">
+                Cuota actual
+                <span class="badge bg-primary rounded-pill">4</span>
+            </label>
+            <label class="text-dark">Ingrese la nueva cuota al sistema</label>
+            <input type="number" min="0" max="10" />
+            <a href="#" class="btn btn-success">Actualizar</a>
+            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Home")'">Regresar</button>
+        </div>
+    </div>
+</div>
+
+
