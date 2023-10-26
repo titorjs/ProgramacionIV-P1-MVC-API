@@ -5,93 +5,136 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ApiColegioPagos.Controllers
 {
-	[Route("api/[controller]")]
-	[ApiController]
-	public class PensionController : Controller
-	{
-		private readonly ApiColegioPagosDbContext _context;
+    [Route("api/[controller]")]
+    [ApiController]
+    public class PensionController : Controller
+    {
+        private readonly ApiColegioPagosDbContext _context;
 
-		public PensionController(ApiColegioPagosDbContext context)
-		{
-			_context = context;
-		}
+        public PensionController(ApiColegioPagosDbContext context)
+        {
+            _context = context;
+        }
 
-		[HttpGet]
-		public async Task<IActionResult> getAll()
-		{
-			List<Pension> pensiones = await _context.Pensiones.ToListAsync();
-			return Ok(pensiones);
-		}
+        [HttpGet]
+        public async Task<IActionResult> getAll()
+        {
+            try
+            {
+                List<Pension> pensiones = await _context.Pensiones.ToListAsync();
+                return Ok(pensiones);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
-		[HttpGet("id/{id}")]
-		public async Task<IActionResult> getById(int id)
-		{
-			Pension pension = await _context.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == id);
-			return Ok(pension);
-		}
+        }
 
-		[HttpPost]
-		public async Task<IActionResult> set([FromBody] Pension pension)
-		{
-			if(pension == null || pension.Pen_valor < 0 || pension.Pen_nombre == null)
-			{
-				return BadRequest("Los datos ingresados no son correctos");
-			}
+        [HttpGet("id/{id}")]
+        public async Task<IActionResult> getById(int id)
+        {
+            try
+            {
+                Pension pension = await _context.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == id);
+                return Ok(pension);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
-			await _context.Pensiones.AddAsync(pension);
-			await _context.SaveChangesAsync();
+        }
 
-			return Ok(pension);
+        [HttpPost]
+        public async Task<IActionResult> set([FromBody] Pension pension)
+        {
+            try
+            {
+                //verificar que los datos recibidos son correctos
+                if (pension == null || pension.Pen_valor < 0 || pension.Pen_nombre == null)
+                {
+                    return BadRequest("Los datos ingresados no son correctos");
+                }
 
-		}
+                await _context.Pensiones.AddAsync(pension);
+                await _context.SaveChangesAsync();
 
-		[HttpPut("id/{id}")]
-		public async Task<IActionResult> update(int id, [FromBody] Pension pension)
-		{
-			Pension pen = await _context.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == id);
-			if (pen == null)
-			{
-				return BadRequest("No se ha encontrado la pensión con id " + id);
-			}
+                return Ok(pension);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
-			if (pension == null || pension.Pen_valor == null || pension.Pen_nombre == null)
-			{
-				return BadRequest("Valores ingresados para la actualización inválidos");
-			}
+        }
 
-			pen.Pen_valor = pension.Pen_valor;
-			pen.Pen_nombre = pension.Pen_nombre;
+        [HttpPut("id/{id}")]
+        public async Task<IActionResult> updateNombre(int id, [FromBody] Pension pension)
+        {
+            try
+            {
+                Pension pen = await _context.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == id);
 
-			_context.Update(pen);
-			await _context.SaveChangesAsync();
+                //Validar que exista la pensión
+                if (pen == null)
+                {
+                    return BadRequest("No se ha encontrado la pensión con id " + id);
+                }
 
-			return Ok(pen);
-		}
+                //Validar que el campo a actualizar sea correcto
+                if (pension == null || pension.Pen_nombre == null)
+                {
+                    return BadRequest("Valores ingresados para la actualización inválidos");
+                }
 
-		//Debe considerar que no se puede eliminar si hay usuarios con esa pensión
-		[HttpDelete]
-		public async Task<IActionResult> deletePension(int id)
-		{
-			Pension pen = await _context.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == id);
+                //Actualizar el nombre
+                pen.Pen_nombre = pension.Pen_nombre;
+                _context.Update(pen);
+                await _context.SaveChangesAsync();
 
-			if (pen == null)
-			{
-				return BadRequest("No se ha encontrado la pensión con id " + id);
-			}
+                return Ok(pen);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
-			Estudiante est = await _context.Estudiantes.FirstOrDefaultAsync(x => x.Pension == id);
-			Pago pago = await _context.Pagos.FirstOrDefaultAsync(x => x.Pension == id);
+        //Debe considerar que no se puede eliminar si hay usuarios con esa pensión
+        [HttpDelete]
+        public async Task<IActionResult> deletePension(int id)
+        {
+            try
+            {
+                Pension pen = await _context.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == id);
 
-			if(est != null || pago != null)
-			{
-				return BadRequest("Existen registros con esta pensión, no se puede eliminar.");
-			}
+                //Validar que exista la pensión
+                if (pen == null)
+                {
+                    return BadRequest("No se ha encontrado la pensión con id " + id);
+                }
 
-			_context.Pensiones.Remove(pen);
-			await _context.SaveChangesAsync();
+                Estudiante est = await _context.Estudiantes.FirstOrDefaultAsync(x => x.Pension == id);
+                Pago pago = await _context.Pagos.FirstOrDefaultAsync(x => x.Pension == id);
 
-			return Ok(pen);
-		}
+                //Validar que no existan registros con esta pensión
+                if (est != null || pago != null)
+                {
+                    return BadRequest("Existen registros con esta pensión, no se puede eliminar.");
+                }
 
-	}
+                //Eliminar la pensión
+                _context.Pensiones.Remove(pen);
+                await _context.SaveChangesAsync();
+
+                return Ok(pen);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+    }
 }

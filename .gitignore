@@ -475,3 +475,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+./ApiColegioPagos/appsettings.json
+./ApiColegioPagos/appsettings.Developmentgt.json
