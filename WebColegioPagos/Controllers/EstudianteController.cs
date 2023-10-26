@@ -6,19 +6,19 @@ namespace WebColegioPagos.Controllers
     public class EstudianteController : Controller
     {
         // GET: EstudianteController
-        public ActionResult Index()
+        public IActionResult Index()
         {
             return View();
         }
 
         // GET: EstudianteController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
             return View();
         }
 
         // GET: EstudianteController/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -27,16 +27,25 @@ namespace WebColegioPagos.Controllers
         
 
         // GET: EstudianteController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             return View();
         }
-
+        //Metodo edicion pago
+        public IActionResult EditPago (int id)
+        {
+            return View();
+        }
+        //Metodo edicion pension
+        public IActionResult EditPension(int id)
+        {
+            return View();
+        }
         // POST: EstudianteController/Edit/5
-       
+
 
         // GET: EstudianteController/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             return View();
         }

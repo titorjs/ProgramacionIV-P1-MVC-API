@@ -2,26 +2,26 @@
     ViewData["Title"] = "Lista de Pagos";
 }
 <h1>@ViewData["Title"]</h1>
-<h3>Buscar pago por cédula de estudiante</h3>
-<nav class="navbar bg-body-tertiary">
+<h4>Buscar pago por cédula de estudiante</h4>
+<nav class="navbar bg-body-tertiary bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
         <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
+            <button class="btn btn-secondary " type="submit">Buscar</button>
         </form>
     </div>
 </nav>
-<h3>Buscar pago por ID de pago</h3>
-<nav class="navbar bg-body-tertiary">
+<h4>Buscar pago por ID de pago</h4>
+<nav class="navbar bg-body-tertiary bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
         <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
+            <button class="btn btn-secondary " type="submit">Buscar</button>
         </form>
     </div>
 </nav>
 
-<table class="table">
+<table class="table table-success table-striped-columns">
     <thead>
         <tr>
             <th scope="col">Id Pago</th>
@@ -38,7 +38,7 @@
             <td>Julian</td>
             <td>Beca Estudiantil</td>
             <td>
-                <button type="button" class="btn btn-success">Pagar</button>
+                <button type="button" class="btn btn-outline-success">Pagar</button>
             </td>
         </tr>
     </tbody>

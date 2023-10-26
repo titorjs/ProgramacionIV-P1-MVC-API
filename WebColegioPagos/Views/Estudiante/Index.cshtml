@@ -3,19 +3,18 @@
     ViewData["Title"] = "Lista de Estudiantes";
 }
 <h1>@ViewData["Title"]</h1>
-<button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Create", "Estudiante")'">Agregar Estudiante</button>
-<h3>Buscar estudiante por cédula</h3>
-<nav class="navbar bg-body-tertiary">
+<button type="button" class="btn btn-outline-info" onclick="location.href='@Url.Action("Create", "Estudiante")'">Agregar Estudiante</button>
+<h4>Buscar estudiante por cédula</h4>
+<nav class="navbar bg-body-tertiary bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
         <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
+            <button class="btn btn-secondary " type="submit">Buscar</button>
         </form>
     </div>
 </nav>
-<div class="btn-group" role="group" aria-label="Basic example">
-</div>
-<table class="table">
+
+<table class="table table-success table-striped-columns">
     <thead>
         <tr>
             <th scope="col">Id Estudiante</th>
@@ -37,8 +36,12 @@
             <td>Activo</td>
             <td>Beca Estudiantil</td>
             <td>
-                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Details", "Estudiante")'"><i class="bi bi-eye-fill"></i></button>
-                <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Estudiante")'"><i class="bi bi-pencil-fill"></i></button>
+                <button type="button" class="btn btn-outline-warning" onclick="location.href='@Url.Action("Details", "Estudiante")'"><i class="bi bi-eye-fill"></i></button>
+                <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Edit", "Estudiante")'"><i class="bi bi-pencil-fill"></i></button>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                      <button type="button" class="btn btn-outline-dark" onclick="location.href='@Url.Action("EditPago", "Estudiante")'">Estado</button>                      
+                      <button type="button" class="btn btn-outline-dark" onclick="location.href='@Url.Action("EditPension", "Estudiante")'">Pension</button>
+                </div>
             </td>
         </tr>
     </tbody>

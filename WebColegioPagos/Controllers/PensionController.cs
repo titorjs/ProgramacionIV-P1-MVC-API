@@ -3,33 +3,33 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebColegioPagos.Controllers
 {
-    public class PagoController : Controller
+    public class PensionController : Controller
     {
-        // GET: PagoController
+        // GET: PensionController
         public IActionResult Index()
         {
             return View();
         }
 
-        // GET: PagoController/Details/5
+        // GET: PensionController/Details/5
         public IActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: PagoController/Create
+        // GET: PensionController/Create
         public IActionResult Create()
         {
             return View();
         }
 
-       // GET: PagoController/Edit/5
+        // GET: PensionController/Edit/5
         public IActionResult Edit(int id)
         {
             return View();
         }
 
-        // GET: PagoController/Delete/5
+        // GET: PensionController/Delete/5
         public IActionResult Delete(int id)
         {
             return View();

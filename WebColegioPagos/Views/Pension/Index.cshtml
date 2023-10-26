@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Lista de Pensiones";
+}
+<h1>@ViewData["Title"]</h1>
+<h4>Buscar pensión por ID</h4>
+<nav class="navbar bg-body-tertiary bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-secondary " type="submit">Buscar</button>
+        </form>
+    </div>
+</nav>
+
+<table class="table table-success table-striped-columns">
+    <thead>
+        <tr>
+            <th scope="col">Id Pension</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Valor</th>  
+            <th scope="col">Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>          
+            <td>1</td>
+            <td>Beca Honoraria</td>
+            <td>115.23</td>
+            <td>
+                <button type="button" class="btn btn-outline-success">Que pongo?</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<p>En esta pagina se muestran las pensiones</p>
