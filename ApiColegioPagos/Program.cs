@@ -2,6 +2,7 @@ using ApiColegioPagos.Data;
 using ApiColegioPagos.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,7 +40,9 @@ using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ApiColegioPagosDbContext>();
     Global global = await dbContext.Globals.FirstOrDefaultAsync(x => x.Glo_id == 1);
-    Pension pension = await dbContext.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == 1); ;
+    Pension pension1 = await dbContext.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == 1);
+    Pension pension2 = await dbContext.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == 2); ;
+    Pension pension3 = await dbContext.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == 3); ;
 
     if (global == null)
     {
@@ -52,15 +55,27 @@ using (var scope = app.Services.CreateScope())
         await dbContext.SaveChangesAsync();
     }
 
-    if (pension == null)
+    if (pension1 == null)
     {
-        pension = new Pension
+        pension1 = new Pension
         {
             Pen_nombre = "Inscripción",
             Pen_valor = 0
         };
 
-        await dbContext.Pensiones.AddAsync(pension);
+        await dbContext.Pensiones.AddAsync(pension1);
+        await dbContext.SaveChangesAsync();
+    }
+
+    if (pension2 == null)
+    {
+        pension2 = new Pension
+        {
+            Pen_nombre = "Normal",
+            Pen_valor = 100
+        };
+
+        await dbContext.Pensiones.AddAsync(pension2);
         await dbContext.SaveChangesAsync();
     }
 }

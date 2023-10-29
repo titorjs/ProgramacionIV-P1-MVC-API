@@ -23,21 +23,38 @@ namespace ApiColegioPagos.Models
         [Required]
         public int Pension { get; set; }
 
-        public static Boolean validarCedula(string cedula)
+        public static Boolean validarCedula(String cedula)
         {
-            if(cedula.Length != 10) return false;
+            var len = cedula.Length;
+            if (len != 10) return false;
 
             try
             {
                 int sumaI = 0;
                 int sumaP = 0;
                 int aux = 0;
+                int verificador = int.Parse(cedula.Substring(9, 1));
 
-                for(int i = 0; i < cedula.Length; i+++)
+                for(int i = 0; i < len - 1; i+= 2)
                 {
-                    aux = int.Parse(cedula[i]);
+                    aux = int.Parse(cedula.Substring(i, 1));
 
+                    aux *= 2;
+
+                    if(aux > 9) aux -= 9;
+
+                    sumaI += aux;
                 }
+                for (int i = 1; i < len - 1; i += 2)
+                {
+                    aux = int.Parse(cedula.Substring(i, 1));
+                    sumaP += aux;
+                }
+
+                int modulo = 10 - (sumaI + sumaP) % 10;
+
+
+                return modulo == verificador;
             } catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);

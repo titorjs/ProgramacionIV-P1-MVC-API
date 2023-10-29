@@ -96,9 +96,8 @@ namespace ApiColegioPagos.Controllers
                     return BadRequest("La cédula del estudiante ya existe");
                 }
 
-
-
-                // ??? Revisar validaciones: cédula, pensión existente
+                //Validar la cédula
+                if (!Estudiante.validarCedula(est.Est_cedula)) return BadRequest("La cédula ingresada es incorrecta");
 
                 estudiante = new Estudiante
                 {
@@ -106,10 +105,9 @@ namespace ApiColegioPagos.Controllers
                     Est_cedula = est.Est_cedula,
                     Est_direccion = est.Est_direccion,
                     Est_nombre = est.Est_nombre,
-                    Pension = est.Pension
+                    Pension = 2
                 };
 
-                //Como añadir correctamente el estudiante cuando 
                 await _context.Estudiantes.AddAsync(estudiante);
                 await _context.SaveChangesAsync();
 
@@ -117,6 +115,11 @@ namespace ApiColegioPagos.Controllers
 
                 Global global = await _context.Globals.FirstOrDefaultAsync(x => x.Glo_id == 1);
                 int cuota = global.Glo_valor;
+
+                if(cuota > 0)
+                {
+                    cuota = est.paga? cuota - 1: cuota;
+                }
 
                 Pago pago = new Pago
                 {
@@ -137,11 +140,11 @@ namespace ApiColegioPagos.Controllers
         }
 
         [HttpPut("cedula/{cedula}")]
-        public async Task<IActionResult> UpdateEstudianteCedula(string cedula, [FromBody] Estudiante est)
+        public async Task<IActionResult> UpdateEstudianteCedula(string cedula, [FromBody] ActualizacionEstudiante est)
         {
             try
             {
-                if (est == null || est.Est_cedula == null || est.Est_nombre == null || est.Est_direccion == null)
+                if (est == null || cedula == null || est.Est_nombre == null || est.Est_direccion == null)
                 {
                     return BadRequest("Datos incompletos");
                 }
@@ -153,9 +156,11 @@ namespace ApiColegioPagos.Controllers
                     return BadRequest("El estudiante no existe");
                 }
 
+                Pension pension = await _context.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == est.Pension);
+                if (pension == null) return BadRequest("No existe la pensión elegida");
+
                 estudiante.Est_nombre = est.Est_nombre;
                 estudiante.Est_direccion = est.Est_direccion;
-                // ??? Validar que la pensión exista
                 estudiante.Pension = est.Pension;
 
                 _context.Estudiantes.Update(estudiante);
@@ -171,11 +176,11 @@ namespace ApiColegioPagos.Controllers
         }
 
         [HttpPut("id/{id}")]
-        public async Task<IActionResult> UpdateEstudianteId(int id, [FromBody] Estudiante est)
+        public async Task<IActionResult> UpdateEstudianteId(int id, [FromBody] ActualizacionEstudiante est)
         {
             try
             {
-                if (est == null || est.Est_id == null || est.Est_nombre == null || est.Est_direccion == null)
+                if (est == null || id < 1 || est.Est_nombre == null || est.Est_direccion == null)
                 {
                     return BadRequest("Datos incompletos");
                 }
@@ -187,9 +192,11 @@ namespace ApiColegioPagos.Controllers
                     return BadRequest("El estudiante no existe");
                 }
 
+                Pension pension = await _context.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == est.Pension);
+                if (pension == null) return BadRequest("No existe la pensión elegida");
+
                 estudiante.Est_nombre = est.Est_nombre;
                 estudiante.Est_direccion = est.Est_direccion;
-                // ??? Validar que la pensión exista
                 estudiante.Pension = est.Pension;
 
                 _context.Estudiantes.Update(estudiante);
@@ -255,24 +262,29 @@ namespace ApiColegioPagos.Controllers
                     return BadRequest("El estudiante ya se encuentra habilitado");
                 }
 
-                est.Est_activo = true;
-                _context.Estudiantes.Update(est);
-
                 /* Lógica de reingreso, actualizar cuotas*/
 
-                Pago utlimoPago = (await _context.Pagos.ToListAsync())
+                Pago ultimoPago = (await _context.Pagos.ToListAsync())
                     .FindAll(x => x.Estudiante == id).OrderByDescending(x => x.Pag_cuota).First();
 
-                
-                if (paga)
+                int cuota = (await _context.Globals.FirstOrDefaultAsync(x => x.Glo_id == 1)).Glo_valor;
+
+                if (paga && cuota > 1) cuota--;
+
+                if(ultimoPago.Pag_cuota < cuota)
                 {
+                    Pago pago = new Pago
+                    {
+                        Estudiante = est.Est_id,
+                        Pag_cuota = cuota,
+                        Pension = 1
+                    };
 
+                    await _context.Pagos.AddAsync(pago);
                 }
-                else
-                {
 
-                }
-
+                est.Est_activo = true;
+                _context.Estudiantes.Update(est);
 
                 await _context.SaveChangesAsync();
                 return Ok(est);
