@@ -36,11 +36,6 @@ namespace WebColegioPagos.Controllers
         {
             return View();
         }
-        //Metodo edicion pension
-        public IActionResult EditPension(int id)
-        {
-            return View();
-        }
         // POST: EstudianteController/Edit/5
 
 

@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Lista de Pagos";
+}
+<h1 class="text-light">@ViewData["Title"]</h1>
+<table class="table table-success table-striped-columns">
+    <thead>
+        <tr>
+            <th scope="col">Id Estudiante</th>
+            <th scope="col">Cédula</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Cuota Estudiante</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>1710044986</td>
+            <td>Julian Flores</td>
+            <td>2 </td>                
+        </tr>
+    </tbody>
+</table>
+<div class="col-6 col-md-6">
+    <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary">Regresar</a>
+</div>
+
+
+<p>En esta pagina se muestran los pagos</p>

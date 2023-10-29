@@ -10,6 +10,11 @@ namespace WebColegioPagos.Controllers
         {
             return View();
         }
+        // GET: PagoController
+        public IActionResult Inpago()
+        {
+            return View();
+        }
 
         // GET: PagoController/Details/5
         public IActionResult Details(int id)
