@@ -78,7 +78,7 @@ namespace ApiColegioPagos.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SetEstudiante([FromBody] RegistroEstudiante est)
+        public async Task<IActionResult> AddEstudiante([FromBody] RegistroEstudiante est)
         {
             try
             {
@@ -116,11 +116,6 @@ namespace ApiColegioPagos.Controllers
                 Global global = await _context.Globals.FirstOrDefaultAsync(x => x.Glo_id == 1);
                 int cuota = global.Glo_valor;
 
-                if(cuota > 0)
-                {
-                    cuota = est.paga? cuota - 1: cuota;
-                }
-
                 Pago pago = new Pago
                 {
                     Estudiante = estudiante.Est_id,
@@ -155,6 +150,8 @@ namespace ApiColegioPagos.Controllers
                 {
                     return BadRequest("El estudiante no existe");
                 }
+
+                if (est.Pension == 1) return BadRequest("No se puede poner la pensión 1, esta es solo de ingreso");
 
                 Pension pension = await _context.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == est.Pension);
                 if (pension == null) return BadRequest("No existe la pensión elegida");
@@ -244,7 +241,7 @@ namespace ApiColegioPagos.Controllers
         }
 
         /* bool paga hace referencia a si pagará la cuota actual o nó */
-        [HttpPatch("activar/{id}")]
+        [HttpPut("activar/{id}/{paga}")]
         public async Task<IActionResult> activar(int id, bool paga)
         {
             try

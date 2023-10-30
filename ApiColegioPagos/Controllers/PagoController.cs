@@ -33,7 +33,7 @@ namespace ApiColegioPagos.Controllers
             }
         }
 
-        [HttpGet("estudiante/{id}")]
+        [HttpGet("estudiante/id/{id}")]
         public async Task<IActionResult> getAllId(int id)
         {
             try
@@ -123,8 +123,8 @@ namespace ApiColegioPagos.Controllers
             }
         }
 
-        [HttpPost("pagar")]
-        public async Task<IActionResult> pagarId(int id)
+        /*[HttpPost("pagar/{id}")]
+        public async Task<IActionResult> pagar(int id)
         {
             try
             {
@@ -164,6 +164,59 @@ namespace ApiColegioPagos.Controllers
                 await _context.SaveChangesAsync();
 
                 return Ok(pago);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }*/
+
+        [HttpPost("pagar/{id}/{cantidad}")]
+        public async Task<IActionResult> pagarId(int id, int cantidad)
+        {
+            try
+            {
+                Estudiante est = await _context.Estudiantes.FirstOrDefaultAsync(x => x.Est_id == id);
+
+                if (est == null)
+                {
+                    return BadRequest("El estudiante no existe");
+                }
+
+                Pago ultimoPago = ((await _context.Pagos.ToListAsync()).FindAll(x => x.Estudiante == id)).OrderByDescending(x => x.Pag_cuota).First();
+
+                Global global = await _context.Globals.FirstOrDefaultAsync(x => x.Glo_id == 1);
+                int cuota = global.Glo_valor;
+
+                if (cuota <= ultimoPago.Pag_cuota)
+                {
+                    return BadRequest("El estudiante ya se encuentra al día");
+                }
+
+                if( cuota < ultimoPago.Pag_cuota + cantidad)
+                {
+                    return BadRequest("Las cuotas ingresadas sobrepasan el pago pendiente");
+                }
+
+                List<Pago> lista = new List<Pago>();
+                Pago pago;
+
+                for (int i = ultimoPago.Pag_cuota + 1; i <= ultimoPago.Pag_cuota + cantidad; i++)
+                {
+                     pago = new Pago
+                    {
+                        Estudiante = est.Est_id,
+                        Pag_cuota = ultimoPago.Pag_cuota + 1,
+                        Pension = est.Pension
+                    };
+
+                    lista.Add( pago );
+                }
+
+                await _context.Pagos.AddRangeAsync(lista);
+                await _context.SaveChangesAsync();
+
+                return Ok();
             }
             catch (Exception ex)
             {
