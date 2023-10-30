@@ -69,8 +69,8 @@ namespace ApiColegioPagos.Controllers
 
         }
 
-        [HttpPut("id/{id}")]
-        public async Task<IActionResult> updateNombre(int id, [FromBody] Pension pension)
+        [HttpPut("id/{id}/{nombre}")]
+        public async Task<IActionResult> updateNombre(int id, string nombre)
         {
             try
             {
@@ -83,13 +83,13 @@ namespace ApiColegioPagos.Controllers
                 }
 
                 //Validar que el campo a actualizar sea correcto
-                if (pension == null || pension.Pen_nombre == null)
+                if (nombre == null)
                 {
                     return BadRequest("Valores ingresados para la actualización inválidos");
                 }
 
                 //Actualizar el nombre
-                pen.Pen_nombre = pension.Pen_nombre;
+                pen.Pen_nombre = nombre;
                 _context.Update(pen);
                 await _context.SaveChangesAsync();
 
