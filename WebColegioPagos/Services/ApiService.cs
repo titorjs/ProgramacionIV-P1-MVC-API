@@ -1,7 +1,7 @@
-﻿using ApiColegioPagos.Models;
-using ApiColegioPagos.Views;
+﻿using WebColegioPagos.Models;
 using Newtonsoft.Json;
 using System.Text;
+using WebColegioPagos.Models.Data;
 
 namespace WebColegioPagos.Services
 {

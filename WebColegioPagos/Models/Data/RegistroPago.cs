@@ -1,8 +1,6 @@
-﻿using ApiColegioPagos.Models;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace ApiColegioPagos.Views
+namespace WebColegioPagos.Models.Data
 {
     public class RegistroPago
     {

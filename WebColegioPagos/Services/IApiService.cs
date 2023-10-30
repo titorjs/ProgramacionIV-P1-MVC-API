@@ -1,6 +1,5 @@
-﻿using ApiColegioPagos.Models;
-using ApiColegioPagos.Views;
-using Microsoft.AspNetCore.Mvc;
+﻿using WebColegioPagos.Models.Data;
+using WebColegioPagos.Models;
 
 namespace WebColegioPagos.Services
 {

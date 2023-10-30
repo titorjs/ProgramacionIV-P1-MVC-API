@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ApiColegioPagos.Views
+namespace WebColegioPagos.Models.Data
 {
     public class ImpagoEstudiante
     {

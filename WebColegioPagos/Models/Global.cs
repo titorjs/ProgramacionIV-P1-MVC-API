@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ApiColegioPagos.Models
+namespace WebColegioPagos.Models
 {
     public class Global
     {

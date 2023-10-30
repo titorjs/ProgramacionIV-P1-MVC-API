@@ -1,4 +1,4 @@
-﻿@using ApiColegioPagos.Models;
+﻿@using WebColegioPagos.Models;
 @model List<Estudiante>
 @{
     ViewData["Title"] = "Lista de Estudiantes";
@@ -8,9 +8,9 @@
 <h4 class="text-light">Buscar estudiante por cédula</h4>
 <nav class="navbar bg-body-tertiary bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
-        <form class="d-flex" role="search" >
-            <input class="form-control me-2"  >
-            <a asp-action="IndexCedula" asp-route-Est_cedula="Est_cedula" class="btn btn-primary" >Buscar</a>
+        <form class="d-flex" role="search" method="post" >
+            <input class="form-control me-2"  asp-for="cedula">
+            <button type="submit" class="btn btn-primary" >Buscar</button>
         </form>
     </div>
 </nav>
