@@ -216,7 +216,7 @@ namespace ApiColegioPagos.Controllers
                 await _context.Pagos.AddRangeAsync(lista);
                 await _context.SaveChangesAsync();
 
-                return Ok();
+                return Ok(lista);
             }
             catch (Exception ex)
             {

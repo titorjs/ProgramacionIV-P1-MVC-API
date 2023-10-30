@@ -15,8 +15,6 @@ namespace ApiColegioPagos.Controllers
             _context = context;
         }
 
-
-
         [HttpPut("{id}/{valor}")]
         public async Task<IActionResult> actualizarValor(int id, int valor)
         {

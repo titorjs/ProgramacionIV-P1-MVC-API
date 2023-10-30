@@ -26,6 +26,13 @@ namespace WebColegioPagos.Services
         public Task<List<ImpagoEstudiante>> GetImpagos();
         public Task<Pago> encontrarPago(int id);
         public Task<Pago> revertirUltimoPago(int id);
-        public Task<Pago> pagar(int id, int cantidad);
+        public Task<List<Pago>> pagar(int id, int cantidad);
+
+        /* Pensiones */
+        public Task<List<Pension>> GetPensiones();
+        public Task<Pension> GetPension(int id);
+        public Task<Pension> AddPension(Pension pension);
+        public Task<Pension> UpdatePension(int id, string nombre);
+        public Task<Pension> DeletePension(int id);
     }
 }

@@ -1,10 +1,7 @@
 ﻿using ApiColegioPagos.Models;
 using ApiColegioPagos.Views;
-using Azure;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
-using System.Net.Http.Json;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Text;
 
 namespace WebColegioPagos.Services
 {
@@ -28,7 +25,7 @@ namespace WebColegioPagos.Services
 
         public async Task<Estudiante> activarEstudiante(int id, bool paga)
         {
-            var respuesta = await _httpClient.PatchAsync($"Estudiante/activar/{id}/{paga}", null);
+            var respuesta = await _httpClient.PatchAsync($"Estudiante/activar/{id}/false", null);
             if (respuesta.IsSuccessStatusCode)
             {
                 Estudiante est = JsonConvert.DeserializeObject<Estudiante>
@@ -39,14 +36,56 @@ namespace WebColegioPagos.Services
             return null;
         }
 
-        public Task<Global> actualizarValor(int valor)
+        public async Task<Global> actualizarValor(int valor)
         {
-            throw new NotImplementedException();
+            var respuesta = await _httpClient.PutAsync($"Global/cuota/{valor}", null);
+            if (respuesta.IsSuccessStatusCode)
+            {
+                Global cuota = JsonConvert.DeserializeObject<Global>
+                                (await respuesta.Content.ReadAsStringAsync());
+                return cuota;
+            }
+
+            return null;
         }
 
-        public Task<Estudiante> AddEstudiante(RegistroEstudiante est)
+        public async Task<Estudiante> AddEstudiante(RegistroEstudiante est)
         {
-            throw new NotImplementedException();
+            var content = new StringContent(JsonConvert.SerializeObject(est), Encoding.UTF8, "application/json");
+            var respuesta = await _httpClient.PostAsync($"Estudiante", content);
+            if (respuesta.IsSuccessStatusCode)
+            {
+                Estudiante estudiante = JsonConvert.DeserializeObject<Estudiante>
+                                (await respuesta.Content.ReadAsStringAsync());
+                return estudiante;
+            }
+            return null;
+        }
+
+        public async Task<Pension> AddPension(Pension pension)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(pension), Encoding.UTF8, "application/json");
+            var respuesta = await _httpClient.PostAsync($"Pension", content);
+            if (respuesta.IsSuccessStatusCode)
+            {
+                Pension p = JsonConvert.DeserializeObject<Pension>
+                                (await respuesta.Content.ReadAsStringAsync());
+                return p;
+            }
+            return null;
+        }
+
+        public async Task<Pension> DeletePension(int id)
+        {
+            var respuesta = await _httpClient.DeleteAsync($"Pension/id/{id}");
+            if (respuesta.IsSuccessStatusCode)
+            {
+                Pension p = JsonConvert.DeserializeObject<Pension>
+                                (await respuesta.Content.ReadAsStringAsync());
+                return p;
+            }
+
+            return null;
         }
 
         public async Task<Estudiante> desactivarEstudiante(int id)
@@ -62,9 +101,17 @@ namespace WebColegioPagos.Services
             return null;
         }
 
-        public Task<Pago> encontrarPago(int id)
+        public async Task<Pago> encontrarPago(int id)
         {
-            throw new NotImplementedException();
+            var respuesta = await _httpClient.GetAsync($"Estudiante/{id}");
+            if (respuesta.IsSuccessStatusCode)
+            {
+                Pago pago = JsonConvert.DeserializeObject<Pago>
+                                (await respuesta.Content.ReadAsStringAsync());
+                return pago;
+            }
+
+            return null;
         }
 
         public async Task<Estudiante> GetEstudiante(int id)
@@ -106,19 +153,69 @@ namespace WebColegioPagos.Services
             return new List<Estudiante>();
         }
 
-        public Task<List<ImpagoEstudiante>> GetImpagos()
+        public async Task<List<ImpagoEstudiante>> GetImpagos()
         {
-            throw new NotImplementedException();
+            var respuesta = await _httpClient.GetAsync($"impagos");
+            if (respuesta.IsSuccessStatusCode)
+            {
+                List<ImpagoEstudiante> impagos = JsonConvert.DeserializeObject<List<ImpagoEstudiante>>
+                                (await respuesta.Content.ReadAsStringAsync());
+                return impagos;
+            }
+
+            return new List<ImpagoEstudiante>();
         }
 
-        public Task<List<Pago>> GetPagos()
+        public async Task<List<Pago>> GetPagos()
         {
-            throw new NotImplementedException();
+            var respuesta = await _httpClient.GetAsync($"Pago");
+            if (respuesta.IsSuccessStatusCode)
+            {
+                List<Pago> est = JsonConvert.DeserializeObject<List<Pago>>
+                                (await respuesta.Content.ReadAsStringAsync());
+                return est;
+            }
+
+            return new List<Pago>();
         }
 
-        public Task<List<Pago>> GetPagosEstudiante(int id)
+        public async Task<List<Pago>> GetPagosEstudiante(int id)
         {
-            throw new NotImplementedException();
+            var respuesta = await _httpClient.GetAsync($"Pago/estudiante/id/{id}");
+            if (respuesta.IsSuccessStatusCode)
+            {
+                List<Pago> pagos = JsonConvert.DeserializeObject<List<Pago>>
+                                (await respuesta.Content.ReadAsStringAsync());
+                return pagos;
+            }
+
+            return new List<Pago>();
+        }
+
+        public async Task<Pension> GetPension(int id)
+        {
+            var respuesta = await _httpClient.GetAsync($"Pension/id/{id}");
+            if (respuesta.IsSuccessStatusCode)
+            {
+                Pension est = JsonConvert.DeserializeObject<Pension>
+                                (await respuesta.Content.ReadAsStringAsync());
+                return est;
+            }
+
+            return null;
+        }
+
+        public async Task<List<Pension>> GetPensiones()
+        {
+            var respuesta = await _httpClient.GetAsync($"Pension");
+            if (respuesta.IsSuccessStatusCode)
+            {
+                List<Pension> est = JsonConvert.DeserializeObject<List<Pension>>
+                                (await respuesta.Content.ReadAsStringAsync());
+                return est;
+            }
+
+            return new List<Pension>();
         }
 
         public async Task<Global> obtenerCuota()
@@ -134,14 +231,30 @@ namespace WebColegioPagos.Services
             return null;
         }
 
-        public Task<Pago> pagar(int id, int cantidad)
+        public async Task<List<Pago>> pagar(int id, int cantidad)
         {
-            throw new NotImplementedException();
+            var respuesta = await _httpClient.PostAsync($"Pago/pagar/{id}/{cantidad}", null);
+            if (respuesta.IsSuccessStatusCode)
+            {
+                List<Pago> pagos = JsonConvert.DeserializeObject<List<Pago>>
+                                (await respuesta.Content.ReadAsStringAsync());
+                return pagos;
+            }
+
+            return new List<Pago>();
         }
 
-        public Task<Pago> revertirUltimoPago(int id)
+        public async Task<Pago> revertirUltimoPago(int id)
         {
-            throw new NotImplementedException();
+            var respuesta = await _httpClient.DeleteAsync($"Pago/revertir/{id}");
+            if (respuesta.IsSuccessStatusCode)
+            {
+                Pago pago = JsonConvert.DeserializeObject<Pago>
+                                (await respuesta.Content.ReadAsStringAsync());
+                return pago;
+            }
+
+            return null;
         }
 
         public async Task<Estudiante> UpdateEstudiante(string cedula, ActualizacionEstudiante datos)
@@ -165,6 +278,19 @@ namespace WebColegioPagos.Services
                 Estudiante est = JsonConvert.DeserializeObject<Estudiante>
                                 (await respuesta.Content.ReadAsStringAsync());
                 return est;
+            }
+
+            return null;
+        }
+
+        public async Task<Pension> UpdatePension(int id, string nombre)
+        {
+            var respuesta = await _httpClient.PutAsJsonAsync<ActualizacionEstudiante>($"id/{id}/{nombre}", null);
+            if (respuesta.IsSuccessStatusCode)
+            {
+                Pension pension = JsonConvert.DeserializeObject<Pension>
+                                (await respuesta.Content.ReadAsStringAsync());
+                return pension;
             }
 
             return null;

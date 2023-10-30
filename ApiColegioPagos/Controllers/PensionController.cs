@@ -102,7 +102,7 @@ namespace ApiColegioPagos.Controllers
         }
 
         //Debe considerar que no se puede eliminar si hay usuarios con esa pensión
-        [HttpDelete]
+        [HttpDelete("id/{id}")]
         public async Task<IActionResult> deletePension(int id)
         {
             try
