@@ -1,14 +1,30 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ApiColegioPagos.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebColegioPagos.Services;
 
 namespace WebColegioPagos.Controllers
 {
     public class EstudianteController : Controller
     {
-        // GET: EstudianteController
-        public IActionResult Index()
+        private readonly IApiService _apiService;
+
+        public EstudianteController(IApiService apiService)
         {
-            return View();
+            _apiService = apiService;
+        }
+        // GET: EstudianteController
+        public async Task<IActionResult> Index()
+        {
+            List<Estudiante> estudiantes = await _apiService.GetEstudiantes();  
+            return View(estudiantes);
+        }
+       
+        public async Task<IActionResult> IndexCedula(string cedula)
+        {
+            List<Estudiante> estudiantes = new List<Estudiante>();
+            estudiantes.Add(await _apiService.GetEstudiante(cedula));
+            return View(estudiantes);
         }
 
         // GET: EstudianteController/Details/5

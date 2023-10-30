@@ -1,4 +1,5 @@
-﻿
+﻿@using ApiColegioPagos.Models;
+@model List<Estudiante>
 @{
     ViewData["Title"] = "Lista de Estudiantes";
 }
@@ -7,9 +8,9 @@
 <h4 class="text-light">Buscar estudiante por cédula</h4>
 <nav class="navbar bg-body-tertiary bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-primary" type="submit">Buscar</button>
+        <form class="d-flex" role="search" >
+            <input class="form-control me-2"  >
+            <a asp-action="IndexCedula" asp-route-Est_cedula="Est_cedula" class="btn btn-primary" >Buscar</a>
         </form>
     </div>
 </nav>
@@ -27,23 +28,25 @@
 
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td>Julian</td>
-            <td>1710044</td>
-            <td>pampa</td>
-            <td>Activo</td>
-            <td>Beca Estudiantil</td>
-            <td>
-                <button type="button" class="btn btn-outline-warning" onclick="location.href='@Url.Action("Details", "Estudiante")'"><i class="bi bi-eye-fill"></i></button>
-                <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Edit", "Estudiante")'"><i class="bi bi-pencil-fill"></i></button>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-outline-dark" onclick="location.href='@Url.Action("EditPago", "Estudiante")'">Estado</button>
-                    <button type="button" class="btn btn-outline-dark" onclick="location.href='@Url.Action("EditPension", "Estudiante")'">Pension</button>
-                </div>
-            </td>
-        </tr>
+    <tbody >
+        @foreach(var item in Model)
+    {
+            <tr>
+                <td>@item.Est_id</td>
+                <td>@item.Est_nombre</td>
+                <td>@item.Est_cedula</td>
+                <td>@item.Est_direccion</td>          
+                <td>@(item.Est_activo?"Activo":"Inactivo")</td>
+                <td>@item.Pension</td>
+                <td>
+                    <button type="button" class="btn btn-outline-warning" onclick="location.href='@Url.Action("Details", "Estudiante")'"><i class="bi bi-eye-fill"></i></button>
+                    <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Edit", "Estudiante")'"><i class="bi bi-pencil-fill"></i></button>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-dark" onclick="location.href='@Url.Action("EditPago", "Estudiante")'">Estado</button>
+                    </div>
+                </td>
+            </tr>
+    }
     </tbody>
 </table>
 <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary">Regresar</a>
