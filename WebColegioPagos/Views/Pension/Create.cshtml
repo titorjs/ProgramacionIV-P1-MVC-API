@@ -5,12 +5,12 @@
 <h1 class="text-light">@ViewData["Title"]</h1>
 <form method="post">
     <div class="mb-3">
-        <label class="text-light">Nombre de la Pensión Actual</label>
-        <input class="form-control" value="@Model.Pen_nombre" disabled>
+        <label class="text-light">Nombre de la Pensión</label>
+        <input asp-for="Pen_nombre" class="form-control">
     </div>
     <div class="mb-3">
-        <label class="text-light">Nombre de la Nueva Pensión</label>
-        <input class="form-control" asp-for="Pen_nombre">
+        <label class="text-light">Valor para la pensión</label>
+        <input asp-for="Pen_valor" class="form-control">
     </div>
     <div class="row col 6">
         <div class="col-6 col-md-6">

@@ -32,6 +32,14 @@ namespace WebColegioPagos.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Create(Pension pension)
+        {
+            Pension p = _apiService.AddPension(pension).Result;
+
+            return RedirectToAction("Index");
+        }
+
         // GET: PensionController/Edit/5
         public async Task<IActionResult> Edit(int Pen_id)
         {
