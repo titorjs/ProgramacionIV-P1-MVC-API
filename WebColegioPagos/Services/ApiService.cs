@@ -103,7 +103,7 @@ namespace WebColegioPagos.Services
 
         public async Task<Pago> encontrarPago(int id)
         {
-            var respuesta = await _httpClient.GetAsync($"Estudiante/{id}");
+            var respuesta = await _httpClient.GetAsync($"Pago/pago/{id}");
             if (respuesta.IsSuccessStatusCode)
             {
                 Pago pago = JsonConvert.DeserializeObject<Pago>
@@ -155,7 +155,7 @@ namespace WebColegioPagos.Services
 
         public async Task<List<ImpagoEstudiante>> GetImpagos()
         {
-            var respuesta = await _httpClient.GetAsync($"impagos");
+            var respuesta = await _httpClient.GetAsync($"Pago/impagos");
             if (respuesta.IsSuccessStatusCode)
             {
                 List<ImpagoEstudiante> impagos = JsonConvert.DeserializeObject<List<ImpagoEstudiante>>
@@ -220,7 +220,7 @@ namespace WebColegioPagos.Services
 
         public async Task<Global> obtenerCuota()
         {
-            var respuesta = await _httpClient.GetAsync($"cuota");
+            var respuesta = await _httpClient.GetAsync($"Global/cuota");
             if (respuesta.IsSuccessStatusCode)
             {
                 Global cuota = JsonConvert.DeserializeObject<Global>
@@ -285,7 +285,7 @@ namespace WebColegioPagos.Services
 
         public async Task<Pension> UpdatePension(int id, string nombre)
         {
-            var respuesta = await _httpClient.PutAsJsonAsync<ActualizacionEstudiante>($"id/{id}/{nombre}", null);
+            var respuesta = await _httpClient.PutAsJsonAsync<ActualizacionEstudiante>($"Pension/id/{id}/{nombre}", null);
             if (respuesta.IsSuccessStatusCode)
             {
                 Pension pension = JsonConvert.DeserializeObject<Pension>

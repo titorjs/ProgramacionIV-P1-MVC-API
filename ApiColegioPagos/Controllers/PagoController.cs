@@ -206,7 +206,7 @@ namespace ApiColegioPagos.Controllers
                      pago = new Pago
                     {
                         Estudiante = est.Est_id,
-                        Pag_cuota = ultimoPago.Pag_cuota + 1,
+                        Pag_cuota = i,
                         Pension = est.Pension
                     };
 

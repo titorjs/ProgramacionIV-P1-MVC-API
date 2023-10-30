@@ -1,6 +1,13 @@
-﻿@{
+﻿@model Global
+@{
     ViewData["Title"] = "Cuotas del Año Lectivo";
 }
+<script>
+    function CuotaActualizada() {
+        var valor = document.getElementById('cuotaInput').value;
+        window.location.href = '@Url.Action("CuotaActualizada", "Global")?valor=' + valor;
+    }
+</script>
 <head>
     <link rel="stylesheet" href="~/css/General.css" />
 </head>
@@ -25,12 +32,16 @@
             <h5 class="card-title text-dark">Cuotas</h5>
             <label class="text-dark">
                 Cuota actual
-                <span class="badge bg-primary rounded-pill">4</span>
+                <span class="badge bg-primary rounded-pill" >
+                    @if (Model != null)
+                    {
+                        @Model.Glo_valor
+                    }
+                    </span>
             </label>
             <label class="text-dark">Ingrese la nueva cuota al sistema</label>
-            <input type="number" min="0" max="10" />
-            <a href="#" class="btn btn-success">Actualizar</a>
-            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Home")'">Regresar</button>
+            <input type="number" min="0" max="10" asp-for="Glo_valor" id="cuotaInput" />
+            <a type="submit" class="btn btn-success" onclick="CuotaActualizada()">Actualizar</a>
         </div>
     </div>
 </div>

@@ -1,13 +1,23 @@
-﻿@{
+﻿@model List<Pago>
+@{
     ViewData["Title"] = "Lista de Pagos";
 }
+
+<script>
+    function buscarPorId() {
+        var id = document.getElementById('id').value;
+        window.location.href = '@Url.Action("BusquedaId", "Pago")?id=' + id;
+    }
+</script>
+
 <h1 class="text-light">@ViewData["Title"]</h1>
 <h4 class="text-light">Buscar pago por ID de pago</h4>
+<button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Pago")'">Mostrar Todos</button>
 <nav class="navbar bg-body-tertiary bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
         <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-secondary " type="submit">Buscar</button>
+            <input id="id" class="form-control me-2" type="number" placeholder="Search" aria-label="Search">
+            <a class="btn btn-secondary " type="submit" onclick="buscarPorId()">Buscar</a>
         </form>
     </div>
 </nav>
@@ -17,21 +27,20 @@
         <tr>
             <th scope="col">Id Pago</th>
             <th scope="col">Cuota</th>
-            <th scope="col">Estudiante</th>
-            <th scope="col">Pension</th>   
-            <th scope="col">Accion</th>
+            <th scope="col">Id del Estudiante</th>
+            <th scope="col">Id de la Pensión</th>   
         </tr>
     </thead>
     <tbody>
-        <tr>          
-            <td>1</td>
-            <td>3</td>
-            <td>Julian</td>
-            <td>Beca Estudiantil</td>
-            <td>
-                <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Pago")'">Pagar</button>
-            </td>
-        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Pag_id</td>
+                <td>@item.Pag_cuota</td>
+                <td>@item.Estudiante</td>
+                <td>@item.Pension</td>
+            </tr>
+        }        
     </tbody>
 </table>
 <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary">Regresar</a>
