@@ -1,19 +1,30 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebColegioPagos.Models;
+using WebColegioPagos.Models.Data;
+using WebColegioPagos.Services;
 
 namespace WebColegioPagos.Controllers
 {
     public class PagoController : Controller
     {
-        // GET: PagoController
-        public IActionResult Index()
+        private readonly IApiService _apiService;
+
+        public PagoController(IApiService apiService)
         {
-            return View();
+            _apiService = apiService;
         }
         // GET: PagoController
-        public IActionResult Inpago()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            List<Pago> pagos = await _apiService.GetPagos();
+            return View(pagos);
+        }
+        // GET: PagoController
+        public async Task<IActionResult> Inpago()
+        {
+            List<ImpagoEstudiante> inpagos = await _apiService.GetImpagos();
+            return View(inpagos);
         }
 
         // GET: PagoController/Details/5
@@ -28,10 +39,15 @@ namespace WebColegioPagos.Controllers
             return View();
         }
 
-       // GET: PagoController/Edit/5
-        public IActionResult Edit(int id)
+        // GET: PagoController/Edit/5
+        public async Task<IActionResult> Edit(int Pag_id)
         {
-            return View();
+            Pago pago = await _apiService.encontrarPago(Pag_id);
+            if (pago != null)
+            {
+                return View(pago);
+            }
+            return RedirectToAction("Index");
         }
 
         // GET: PagoController/Delete/5

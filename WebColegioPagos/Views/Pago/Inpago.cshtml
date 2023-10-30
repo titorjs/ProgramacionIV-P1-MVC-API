@@ -1,4 +1,6 @@
-﻿@{
+﻿@using WebColegioPagos.Models.Data;
+@model List<ImpagoEstudiante>
+@{
     ViewData["Title"] = "Lista de Pagos";
 }
 <h1 class="text-light">@ViewData["Title"]</h1>
@@ -12,12 +14,16 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>1</td>
-            <td>1710044986</td>
-            <td>Julian Flores</td>
-            <td>2 </td>                
-        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Est_id</td>
+                <td>@item.Est_cedula</td>
+                <td>@item.Est_nombre</td>
+                <td>@item.cuotaActual </td>
+            </tr>
+        }
+        
     </tbody>
 </table>
 <div class="col-6 col-md-6">

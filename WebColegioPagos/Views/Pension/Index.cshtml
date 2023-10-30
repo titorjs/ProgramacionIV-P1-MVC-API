@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Pension>
+@{
     ViewData["Title"] = "Lista de Pensiones";
 }
 <h1 class="text-light">@ViewData["Title"]</h1>
@@ -22,14 +23,18 @@
         </tr>
     </thead>
     <tbody>
-        <tr>          
-            <td>1</td>
-            <td>Beca Honoraria</td>
-            <td>115.23</td>
-            <td>
-                <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Edit", "Pension")'"><i class="bi bi-pencil-fill"></i></button>
-            </td>
-        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Pen_id</td>
+                <td>@item.Pen_nombre</td>
+                <td>@item.Pen_valor</td>
+                <td>
+                    <a asp-action="Edit" asp-route-Pen_id="@item.Pen_id" class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a>
+                </td>
+            </tr>
+        }
+        
     </tbody>
 </table>
 <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary">Regresar</a>

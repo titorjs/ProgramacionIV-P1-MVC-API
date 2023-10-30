@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Pago>
+@{
     ViewData["Title"] = "Lista de Pagos";
 }
 <h1 class="text-light">@ViewData["Title"]</h1>
@@ -17,21 +18,24 @@
         <tr>
             <th scope="col">Id Pago</th>
             <th scope="col">Cuota</th>
-            <th scope="col">Estudiante</th>
-            <th scope="col">Pension</th>   
+            <th scope="col">Id del Estudiante</th>
+            <th scope="col">Id de la Pensión</th>   
             <th scope="col">Accion</th>
         </tr>
     </thead>
     <tbody>
-        <tr>          
-            <td>1</td>
-            <td>3</td>
-            <td>Julian</td>
-            <td>Beca Estudiantil</td>
-            <td>
-                <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Pago")'">Pagar</button>
-            </td>
-        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Pag_id</td>
+                <td>@item.Pag_cuota</td>
+                <td>@item.Estudiante</td>
+                <td>@item.Pension</td>
+                <td>
+                    <a asp-action="Edit" asp-route-Pag_id="@item.Pag_id" class="btn btn-success">Pagar</a>
+                </td>
+            </tr>
+        }        
     </tbody>
 </table>
 <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary">Regresar</a>
