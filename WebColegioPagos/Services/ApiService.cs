@@ -25,7 +25,7 @@ namespace WebColegioPagos.Services
 
         public async Task<Estudiante> activarEstudiante(int id, bool paga)
         {
-            var respuesta = await _httpClient.PatchAsync($"Estudiante/activar/{id}/false", null);
+            var respuesta = await _httpClient.PatchAsync($"Estudiante/activar/{id}/true", null);
             if (respuesta.IsSuccessStatusCode)
             {
                 Estudiante est = JsonConvert.DeserializeObject<Estudiante>
@@ -33,7 +33,7 @@ namespace WebColegioPagos.Services
                 return est;
             }
 
-            return null;
+            return new Estudiante();
         }
 
         public async Task<Global> actualizarValor(int valor)

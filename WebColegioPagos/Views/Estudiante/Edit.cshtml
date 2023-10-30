@@ -1,33 +1,32 @@
-﻿@{
+﻿@model Estudiante
+@{
     ViewData["Title"] = "Modificación del Estudiante";
 }
 <h1 class="text-light">@ViewData["Title"]</h1>
 <form method="post">
     <div class="mb-3">
         <label class="text-light">Nombre</label>
-        <input class="form-control" >
+        <input asp-for="Est_nombre" class="form-control">
     </div>
     <div class="mb-3">
         <label class="text-light">Cedula</label>
-        <input class="form-control" >
+        <input asp-for="Est_cedula" class="form-control">
     </div>
     <div class="mb-3">
         <label class="text-light">Direccion</label>
-        <input class="form-control" >
+        <input asp-for="Est_direccion" class="form-control">
     </div>
     <div class="mb-3">
-        <label class="text-light">Pension Actual</label>
-        <input class="form-control" disabled>
+        <label class="text-light">Estado actividad</label>
+        <input class="form-control" disabled value="@(Model.Est_activo?"Activo":"Inactivo")">
     </div>
     <div class="mb-3">
-        <label class="text-light">Nueva Pensión</label>
-        <input class="form-control" type="number" min="1">
+        <label class="text-light">Pension</label>
+        <input asp-for="Pension" class="form-control">
     </div>
     <div class="row col 6">
         <div class="col-6 col-md-6">
-            <button class="btn btn-success">Guardar</button>
-        </div>
-        <div class="col-6 col-md-6">
+            <button type="submit" class="btn btn-success">Guardar</button>
             <a asp-action="Index" class="btn btn-primary">Regresar</a>
         </div>
     </div>

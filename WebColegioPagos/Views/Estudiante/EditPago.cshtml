@@ -1,15 +1,24 @@
-﻿@{
+﻿@model Estudiante
+@{
     ViewData["Title"] = "Estado Activo del estudiante";
 }
+
+<script>
+    function activar() {
+        var act = document.getElementById('exampleSelect1').value;
+        window.location.href = '@Url.Action("EditPagoFuncion", "Estudiante")?activo=' + act + '&id=' + @Model.Est_id;
+    }
+</script>
+
 <h1 class="text-light">@ViewData["Title"]</h1>
 <form method="post">
     <div class="mb-3">
         <label class="text-light">Nombre</label>
-        <input class="form-control" disabled>
+        <input class="form-control" asp-for="Est_nombre" disabled>
     </div>
     <div class="mb-3">
         <label class="text-light">Estado actual</label>
-        <input class="form-control" disabled>
+        <input class="form-control" value="@(Model.Est_activo?"Activo":"Inactivo")" disabled>
     </div>
     <div class="mb-3">
         <div class="form-group">
@@ -22,7 +31,7 @@
     </div>
     <div class="row col 6">
         <div class="col-6 col-md-6">
-            <button class="btn btn-success">Guardar</button>
+            <a type="submit" class="btn btn-primary" onclick="activar()">Guardar</a>
         </div>
         <div class="col-6 col-md-6">
             <a asp-action="Index" class="btn btn-primary">Regresar</a>

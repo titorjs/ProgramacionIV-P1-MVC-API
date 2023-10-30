@@ -241,7 +241,7 @@ namespace ApiColegioPagos.Controllers
         }
 
         /* bool paga hace referencia a si pagará la cuota actual o nó */
-        [HttpPut("activar/{id}/{paga}")]
+        [HttpPatch("activar/{id}/{paga}")]
         public async Task<IActionResult> activar(int id, bool paga)
         {
             try

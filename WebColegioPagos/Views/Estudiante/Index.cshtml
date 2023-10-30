@@ -3,14 +3,24 @@
 @{
     ViewData["Title"] = "Lista de Estudiantes";
 }
+
+<script>
+    function buscarPorCedula() {
+        var cedula = document.getElementById('cedulaInput').value;
+        window.location.href = '@Url.Action("BusquedaCedula", "Estudiante")?cedula=' + cedula;
+    }
+</script>
+
+
 <h1 class="text-light">@ViewData["Title"]</h1>
 <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Create", "Estudiante")'">Agregar Estudiante</button>
+<button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Estudiante")'">Mostrar Todos</button>
 <h4 class="text-light">Buscar estudiante por cédula</h4>
 <nav class="navbar bg-body-tertiary bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
-        <form class="d-flex" role="search" method="post" >
-            <input class="form-control me-2"  asp-for="cedula">
-            <button type="submit" class="btn btn-primary" >Buscar</button>
+        <form class="d-flex" role="search" method="post">
+            <input class="form-control me-2" type="text" id="cedulaInput">
+            <a type="submit" class="btn btn-primary" onclick="buscarPorCedula()">Buscar</a>
         </form>
     </div>
 </nav>
@@ -30,7 +40,7 @@
     </thead>
     <tbody >
         @foreach(var item in Model)
-    {
+        {
             <tr>
                 <td>@item.Est_id</td>
                 <td>@item.Est_nombre</td>
@@ -39,14 +49,14 @@
                 <td>@(item.Est_activo?"Activo":"Inactivo")</td>
                 <td>@item.Pension</td>
                 <td>
-                    <button type="button" class="btn btn-outline-warning" onclick="location.href='@Url.Action("Details", "Estudiante")'"><i class="bi bi-eye-fill"></i></button>
-                    <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Edit", "Estudiante")'"><i class="bi bi-pencil-fill"></i></button>
+                    <a type="button" class="btn btn-outline-warning" asp-action="Details" asp-route-id="@item.Est_id"><i class="bi bi-eye-fill"></i></a>
+                    <a type="button" class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Est_id"><i class="bi bi-pencil-fill"></i></a>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-outline-dark" onclick="location.href='@Url.Action("EditPago", "Estudiante")'">Estado</button>
+                        <a type="button" class="btn btn-outline-dark" asp-action="EditPago" asp-route-id="@item.Est_id">Estado</a>
                     </div>
                 </td>
             </tr>
-    }
+        }
     </tbody>
 </table>
 <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary">Regresar</a>

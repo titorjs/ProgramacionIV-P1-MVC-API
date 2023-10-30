@@ -1,4 +1,4 @@
-﻿
+﻿@model Estudiante
 @{
     ViewData["Title"] = "Detalles del Estudiante";
 }
@@ -6,23 +6,23 @@
 <form method="post">
     <div class="mb-3">
         <label class="text-light">Nombre</label>
-        <input  class="form-control" disabled>
+        <input asp-for="Est_nombre" class="form-control" disabled>
     </div>
     <div class="mb-3">
         <label class="text-light">Cedula</label>
-        <input class="form-control" disabled>
+        <input asp-for="Est_cedula" class="form-control" disabled>
     </div>
     <div class="mb-3">
         <label class="text-light">Direccion</label>
-        <input class="form-control" disabled>
+        <input asp-for="Est_direccion" class="form-control" disabled>
     </div>
     <div class="mb-3">
         <label class="text-light">Estado actividad</label>
-        <input class="form-control" disabled>
+        <input class="form-control" disabled value="@(Model.Est_activo?"Activo":"Inactivo")">
     </div>
     <div class="mb-3">
         <label class="text-light">Pension</label>
-        <input class="form-control" disabled>
+        <input asp-for="Pension" class="form-control" disabled>
     </div>
     <div class="row col 6">
         <div class="col-6 col-md-6">

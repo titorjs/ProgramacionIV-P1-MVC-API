@@ -1,6 +1,7 @@
 ﻿using WebColegioPagos.Models;
 using Microsoft.AspNetCore.Mvc;
 using WebColegioPagos.Services;
+using WebColegioPagos.Models.Data;
 
 namespace WebColegioPagos.Controllers
 {
@@ -19,19 +20,23 @@ namespace WebColegioPagos.Controllers
             return View(estudiantes);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Index(string cedula)
+        public async Task<IActionResult> BusquedaCedula(string cedula)
         {
             List<Estudiante> estudiantes = new List<Estudiante>();
             Estudiante est = _apiService.GetEstudiante(cedula).Result;
-            estudiantes.Add(est);
-            return View(estudiantes);
+            if(est != null) estudiantes.Add(est);
+            return View("Index", estudiantes);
         }
 
         // GET: EstudianteController/Details/5
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            Estudiante estudiante = await _apiService.GetEstudiante(id);
+            if (estudiante != null)
+            {
+                return View(estudiante);
+            }
+            return RedirectToAction("Index");
         }
 
         // GET: EstudianteController/Create
@@ -40,28 +45,74 @@ namespace WebColegioPagos.Controllers
             return View();
         }
 
-        // POST: EstudianteController/Create
-        
+        [HttpPost]
+        public IActionResult Create(RegistroEstudiante estudiante)
+        {
+            Estudiante est = _apiService.AddEstudiante(estudiante).Result;
+            if (est != null)
+            {
+                RedirectToAction("Details", est.Est_id);
+            }
+            return RedirectToAction("Index");
+        }
 
         // GET: EstudianteController/Edit/5
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            Estudiante estudiante = await _apiService.GetEstudiante(id);
+            if (estudiante != null)
+            {
+                return View(estudiante);
+            }
+            return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public IActionResult Edit(Estudiante estudiante)
+        {
+            string cedula = estudiante.Est_cedula;
+            ActualizacionEstudiante datos = new ActualizacionEstudiante
+            {
+                Est_direccion = estudiante.Est_direccion,
+                Est_nombre = estudiante.Est_nombre,
+                Pension = estudiante.Pension
+            };
+
+            Estudiante est = _apiService.UpdateEstudiante(cedula, datos).Result;
+            if (est != null)
+            {
+                RedirectToAction("Details", est.Est_id);
+            }
+            return RedirectToAction("Index");
+        }
+
         //Metodo edicion pago
-        public IActionResult EditPago (int id)
+        public async Task<IActionResult> EditPago (int id)
         {
-            return View();
-        }
-        // POST: EstudianteController/Edit/5
-
-
-        // GET: EstudianteController/Delete/5
-        public IActionResult Delete(int id)
-        {
-            return View();
+            Estudiante estudiante = await _apiService.GetEstudiante(id);
+            if (estudiante != null)
+            {
+                return View(estudiante);
+            }
+            return RedirectToAction("Index");
         }
 
-      
+        public async Task<IActionResult> EditPagoFuncion(string activo, int id)
+        {
+            Estudiante est;
+            if(activo == "Activo")
+            {
+                est = _apiService.activarEstudiante(id, false).Result;
+            } else
+            {
+                est = _apiService.desactivarEstudiante(id).Result;
+            }
+
+            if (est != null)
+            {
+                RedirectToAction("Details", est.Est_id);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
