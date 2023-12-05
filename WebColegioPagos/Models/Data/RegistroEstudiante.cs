@@ -15,5 +15,8 @@ namespace WebColegioPagos.Models.Data
         
         [Required]
         public Boolean paga {  get; set; }
+
+        [MinLength(8)]
+        public string Est_contrasenia { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace ApiColegioPagos.Data
         {
         }
 
+        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Estudiante> Estudiantes { get; set; }
         public virtual DbSet<Pago> Pagos { get; set; }
         public virtual DbSet<Pension> Pensiones { get; set; }

@@ -8,6 +8,9 @@ namespace ApiColegioPagos.Models
         [Key]
         public int Est_id { get; set; }
 
+        [MinLength(8)]
+        public string contrasenia { get; set; } = "Estudiantes2023";
+
         [Required, MaxLength(10)]
         public string Est_cedula { get; set; }
 

@@ -41,8 +41,9 @@ using (var scope = app.Services.CreateScope())
     var dbContext = scope.ServiceProvider.GetRequiredService<ApiColegioPagosDbContext>();
     Global global = await dbContext.Globals.FirstOrDefaultAsync(x => x.Glo_id == 1);
     Pension pension1 = await dbContext.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == 1);
-    Pension pension2 = await dbContext.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == 2); ;
-    Pension pension3 = await dbContext.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == 3); ;
+    Pension pension2 = await dbContext.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == 2);
+    Pension pension3 = await dbContext.Pensiones.FirstOrDefaultAsync(x => x.Pen_id == 3);
+    Admin adminBase = await dbContext.Admins.FirstOrDefaultAsync(x => x.Id == 1);
 
     if (global == null)
     {
@@ -76,6 +77,16 @@ using (var scope = app.Services.CreateScope())
         };
 
         await dbContext.Pensiones.AddAsync(pension2);
+        await dbContext.SaveChangesAsync();
+    }
+
+    if( adminBase == null)
+    {
+        adminBase = new Admin
+        {
+            contrasenia = "1q2w3e4r"
+        };
+        await dbContext.Admins.AddAsync(adminBase);
         await dbContext.SaveChangesAsync();
     }
 }

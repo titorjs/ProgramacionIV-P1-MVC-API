@@ -25,6 +25,12 @@ namespace ApiColegioPagos.Controllers
             try
             {
                 List<Estudiante> estudiantes = await _context.Estudiantes.ToListAsync();
+
+                foreach (Estudiante e in estudiantes)
+                {
+                    e.contrasenia = "";
+                }
+
                 return Ok(estudiantes);
             }
             catch (Exception ex)
@@ -44,6 +50,7 @@ namespace ApiColegioPagos.Controllers
                 //Validar que el estudiante exista
                 if (estudiante != null)
                 {
+                    estudiante.contrasenia = "";
                     return Ok(estudiante);
                 }
 
@@ -66,6 +73,7 @@ namespace ApiColegioPagos.Controllers
                 //Verificar que el estudiante exista
                 if (estudiante != null)
                 {
+                    estudiante.contrasenia = "";
                     return Ok(estudiante);
                 }
 
@@ -108,6 +116,11 @@ namespace ApiColegioPagos.Controllers
                     Pension = 2
                 };
 
+                if (est.Est_contrasenia != null)
+                {
+                    estudiante.contrasenia = est.Est_contrasenia;
+                }
+
                 await _context.Estudiantes.AddAsync(estudiante);
                 await _context.SaveChangesAsync();
 
@@ -125,6 +138,8 @@ namespace ApiColegioPagos.Controllers
 
                 await _context.Pagos.AddAsync(pago);
                 await _context.SaveChangesAsync();
+
+                estudiante.contrasenia = "";
 
                 return Ok(estudiante);
             }
@@ -163,6 +178,7 @@ namespace ApiColegioPagos.Controllers
                 _context.Estudiantes.Update(estudiante);
                 await _context.SaveChangesAsync();
 
+                estudiante.contrasenia = "";
                 return Ok(estudiante);
             }
             catch (Exception ex)
@@ -199,6 +215,7 @@ namespace ApiColegioPagos.Controllers
                 _context.Estudiantes.Update(estudiante);
                 await _context.SaveChangesAsync();
 
+                estudiante.contrasenia = "";
                 return Ok(estudiante);
             }
             catch (Exception ex)
@@ -232,6 +249,7 @@ namespace ApiColegioPagos.Controllers
                 _context.Estudiantes.Update(est);
                 await _context.SaveChangesAsync();
 
+                est.contrasenia = "";
                 return Ok(est);
             }
             catch (Exception ex)
@@ -282,9 +300,68 @@ namespace ApiColegioPagos.Controllers
 
                 est.Est_activo = true;
                 _context.Estudiantes.Update(est);
-
                 await _context.SaveChangesAsync();
+
+                est.contrasenia = "";
                 return Ok(est);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(Estudiante estudianteValidar)
+        {
+            try
+            {
+                Estudiante estudiante = await _context.Estudiantes.FirstOrDefaultAsync(x => x.Est_id == estudianteValidar.Est_id);
+
+                if (estudiante == null)
+                {
+                    return BadRequest("No existe tal estudiante");
+                }
+
+                if (estudiante.contrasenia == estudianteValidar.contrasenia)
+                {
+                    return Ok(true);
+                }
+
+                return Ok(false);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("cambioContrasenia")]
+        public async Task<IActionResult> CambioContrasenia(Estudiante estudianteCambio, String nuevaContrasenia)
+        {
+            try
+            {
+                if (nuevaContrasenia.Length < 8)
+                {
+                    return BadRequest("La contraseña debe tener almenos 8 carateres.");
+                }
+
+                Estudiante estudiante = await _context.Estudiantes.FirstOrDefaultAsync(x => x.Est_id == estudianteCambio.Est_id);
+
+                if (estudiante == null)
+                {
+                    return BadRequest("No existe tal estudiante");
+                }
+
+                if (estudiante.contrasenia == estudianteCambio.contrasenia)
+                {
+                    estudiante.contrasenia = nuevaContrasenia;
+                    _context.Estudiantes.Update(estudiante);
+                    _context.SaveChanges();
+                    return Ok(true);
+                }
+
+                return BadRequest("La contraseña actual no coincide");
             }
             catch (Exception ex)
             {

@@ -12,5 +12,11 @@ namespace ApiColegioPagos.Views
 
         [Required, MaxLength(150)]
         public string Est_direccion { get; set; }
+        
+        [Required]
+        public Boolean paga {  get; set; }
+
+        [MinLength(8)]
+        public string Est_contrasenia { get; set; }
     }
 }
